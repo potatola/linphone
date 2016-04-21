@@ -114,7 +114,7 @@ public class EditContactFragment extends Fragment {
 				getFragmentManager().popBackStackImmediate();
 
 				if(LinphoneActivity.instance().getResources().getBoolean(R.bool.isTablet))
-					ContactsFragment.instance().invalidate();
+					TVContactsFragment.instance().invalidate();
 			}
 		});
 		

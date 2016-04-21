@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/background"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:background="@drawable/toolsbar_background">
+
+		<TextView
+			android:visibility="invisible"
+			android:paddingTop="20dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+		<TextView
+			android:visibility="invisible"
+			android:paddingTop="20dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+		<TextView
+			android:visibility="invisible"
+			android:paddingTop="20dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+
+		<TextView
+			android:contentDescription="@string/content_description_new_contact"
+			android:id="@+id/newContact"
+			android:background="@drawable/contacts_add_contact"
+			android:text="@string/button_add_contact"
+			android:gravity="center"
+			android:paddingTop="20dp"
+			android:textSize="13sp"
+			android:textColor="@drawable/text_button"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<GridView
+			android:id="@+id/contactsList"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:cacheColorHint="@color/transparent"
+			android:layout_margin="10dp"
+			android:numColumns="auto_fit"
+			android:columnWidth="100dp"
+			android:verticalSpacing="10dp"
+			android:horizontalSpacing="10dp"
+			android:stretchMode="spacingWidth"
+			android:gravity="center"
+			android:fastScrollAlwaysVisible="true"
+			android:fastScrollEnabled="true" />
+
+		<TextView
+			android:id="@+id/noContact"
+			android:visibility="gone"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layout_centerVertical="true"
+			android:text="@string/no_contact"
+			android:textColor="@drawable/text_color"
+			android:textAppearance="@android:style/TextAppearance.Large"/>
+
+	</RelativeLayout>
+
+</LinearLayout>
