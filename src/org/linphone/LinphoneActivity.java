@@ -379,7 +379,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			    i.addCategory("android.intent.category.DEFAULT");
 			    startActivity(i);
 			} else {
-				newFragment = new ContactsFragment();
+				newFragment = new TVContactsFragment();
 				friendStatusListenerFragment = newFragment;
 			}
 			break;
