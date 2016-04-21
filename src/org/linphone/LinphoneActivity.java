@@ -450,7 +450,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		return isAnimationDisabled;
 	}
 
-	private void changeFragment(Fragment newFragment, FragmentsAvailable newFragmentType, boolean withoutAnimation) {
+	public void changeFragment(Fragment newFragment, FragmentsAvailable newFragmentType, boolean withoutAnimation) {
 		if (statusFragment != null) {
 			statusFragment.closeStatusBar();
 		}
@@ -472,7 +472,6 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		}
 
 		if (newFragmentType != FragmentsAvailable.DIALER
-				|| newFragmentType != FragmentsAvailable.MAIN
 				|| newFragmentType != FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 				|| newFragmentType != FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
 				|| newFragmentType != FragmentsAvailable.CONTACTS
@@ -509,7 +508,6 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			transaction.replace(R.id.fragmentContainer2, newFragment);
 		} else {
 			if (newFragmentType == FragmentsAvailable.DIALER
-					|| newFragmentType != FragmentsAvailable.MAIN
 					|| newFragmentType == FragmentsAvailable.ABOUT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
@@ -535,7 +533,6 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 
 		currentFragment = newFragmentType;
 		if (newFragmentType == FragmentsAvailable.DIALER
-				|| newFragmentType != FragmentsAvailable.MAIN
 				|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 				|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
 				|| newFragmentType == FragmentsAvailable.SETTINGS
@@ -551,6 +548,10 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		fragmentsHistory.add(currentFragment);
 	}
 
+	public void displayMain() {
+		changeCurrentFragment(FragmentsAvailable.MAIN, null);
+	}
+	
 	public void displayHistory() {
 		changeCurrentFragment(FragmentsAvailable.HISTORY, null);
 	}
@@ -792,6 +793,8 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		case CHATLIST:
 		case CHAT:
 			chat.setSelected(true);
+			break;
+		case MAIN:
 			break;
 		}
 	}
@@ -1269,8 +1272,11 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (currentFragment == FragmentsAvailable.DIALER
 					|| currentFragment == FragmentsAvailable.CONTACTS
-					|| currentFragment == FragmentsAvailable.HISTORY
-					|| currentFragment == FragmentsAvailable.CHATLIST
+					|| currentFragment == FragmentsAvailable.HISTORY) {
+				displayMain();
+				return true;
+			}
+			else if (currentFragment == FragmentsAvailable.CHATLIST
 					|| currentFragment == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 					|| currentFragment == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS) {
 				boolean isBackgroundModeActive = LinphonePreferences.instance().isBackgroundModeEnabled();

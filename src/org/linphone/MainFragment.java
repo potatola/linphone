@@ -1,14 +1,5 @@
 package org.linphone;
 
-import org.linphone.core.LinphoneCore;
-import org.linphone.mediastream.Log;
-import org.linphone.ui.AddressAware;
-import org.linphone.ui.AddressText;
-import org.linphone.ui.CallButton;
-import org.linphone.ui.EraseButton;
-
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

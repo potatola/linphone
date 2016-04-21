@@ -87,7 +87,7 @@
 	            android:id="@+id/fragmentContainer"
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
-	            android:layout_weight="0.67" />
+	            android:layout_weight="0.4" />
 	        
 	        <LinearLayout
 	            android:orientation="horizontal"
@@ -95,7 +95,7 @@
 	            android:visibility="gone"
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
-	            android:layout_weight="0.33"
+	            android:layout_weight="0.5"
 	            android:paddingBottom="10dp" />
         
         </LinearLayout>
