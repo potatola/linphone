@@ -102,9 +102,9 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 	private RelativeLayout contacts, history, settings, chat, aboutChat, aboutSettings;
 	private FragmentsAvailable currentFragment, nextFragment;
 	private List<FragmentsAvailable> fragmentsHistory;
-	private Fragment dialerFragment, messageListFragment, friendStatusListenerFragment;
+	private Fragment dialerFragment, messageListFragment, friendStatusListenerFragment, mainFragment;
 	private ChatFragment chatFragment;
-	private SavedState dialerSavedState;
+	private SavedState dialerSavedState, mainSavedState;
 	private boolean newProxyConfig;
 	private boolean isAnimationDisabled = false, preferLinphoneContacts = false;
 	private OrientationEventListener mOrientationHelper;
@@ -163,19 +163,19 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			LinphonePreferences.instance().contactsMigrationDone();
 		}
 
-		setContentView(R.layout.main);
+		setContentView(R.layout.main_new);
 		instance = this;
 		fragmentsHistory = new ArrayList<FragmentsAvailable>();
 		initButtons();
 
-		currentFragment = nextFragment = FragmentsAvailable.DIALER;
+		currentFragment = nextFragment = FragmentsAvailable.MAIN;
 		fragmentsHistory.add(currentFragment);
 		if (savedInstanceState == null) {
 			if (findViewById(R.id.fragmentContainer) != null) {
-				dialerFragment = new DialerFragment();
-				dialerFragment.setArguments(getIntent().getExtras());
-				getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, dialerFragment, currentFragment.toString()).commit();
-				selectMenu(FragmentsAvailable.DIALER);
+				mainFragment = new MainFragment();
+				mainFragment.setArguments(getIntent().getExtras());
+				getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, currentFragment.toString()).commit();
+				selectMenu(FragmentsAvailable.MAIN);
 			}
 		}
 
@@ -349,17 +349,31 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			return;
 		}
 		nextFragment = newFragmentType;
-
+/*		
 		if (currentFragment == FragmentsAvailable.DIALER) {
 			try {
 				dialerSavedState = getSupportFragmentManager().saveFragmentInstanceState(dialerFragment);
 			} catch (Exception e) {
 			}
 		}
-
+*/
+		if (currentFragment == FragmentsAvailable.MAIN) {
+			try {
+				mainSavedState = getSupportFragmentManager().saveFragmentInstanceState(mainFragment);
+			} catch (Exception e) {
+			}
+		}
+		
 		Fragment newFragment = null;
 
 		switch (newFragmentType) {
+		case MAIN:
+			newFragment = new MainFragment();
+			if (extras == null) {
+				newFragment.setInitialSavedState(mainSavedState);
+			}
+			mainFragment = newFragment;
+			break;
 		case HISTORY:
 			if (getResources().getBoolean(R.bool.use_simple_history)) {
 				newFragment = new HistorySimpleFragment();
@@ -458,6 +472,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		}
 
 		if (newFragmentType != FragmentsAvailable.DIALER
+				|| newFragmentType != FragmentsAvailable.MAIN
 				|| newFragmentType != FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 				|| newFragmentType != FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
 				|| newFragmentType != FragmentsAvailable.CONTACTS
@@ -494,6 +509,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			transaction.replace(R.id.fragmentContainer2, newFragment);
 		} else {
 			if (newFragmentType == FragmentsAvailable.DIALER
+					|| newFragmentType != FragmentsAvailable.MAIN
 					|| newFragmentType == FragmentsAvailable.ABOUT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
@@ -519,6 +535,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 
 		currentFragment = newFragmentType;
 		if (newFragmentType == FragmentsAvailable.DIALER
+				|| newFragmentType != FragmentsAvailable.MAIN
 				|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 				|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
 				|| newFragmentType == FragmentsAvailable.SETTINGS
@@ -534,6 +551,10 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		fragmentsHistory.add(currentFragment);
 	}
 
+	public void displayHistory() {
+		changeCurrentFragment(FragmentsAvailable.HISTORY, null);
+	}
+	
 	public void displayHistoryDetail(String sipUri, LinphoneCallLog log) {
 		LinphoneAddress lAddress;
 		try {
