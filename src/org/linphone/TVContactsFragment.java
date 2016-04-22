@@ -115,7 +115,6 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 				} else {
 					to = address;
 				}
-				Toast.makeText(getActivity(), "To:"+to, Toast.LENGTH_SHORT).show();
 				LinphoneActivity.instance().setAddresGoToDialerAndCall(to, contact.getName(), contact.getPhotoUri());
 			}
 		}
