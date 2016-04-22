@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.linphone.ContactsFragment.ContactsListAdapter;
 import org.linphone.compatibility.Compatibility;
+import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneFriend;
+import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.core.PresenceActivityType;
 
 import android.annotation.SuppressLint;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -31,7 +34,7 @@ import android.widget.AdapterView.OnItemClickListener;
  *
  */
 @SuppressLint("DefaultLocale")
-public class TVContactsFragment extends Fragment implements OnClickListener, OnItemClickListener {
+public class TVContactsFragment extends Fragment implements OnClickListener, OnItemClickListener, OnItemSelectedListener {
 	private LayoutInflater mInflater;
 	private GridView contactsList;
 	private TextView noContact, newContact;
@@ -66,6 +69,7 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
         
         contactsList = (GridView) view.findViewById(R.id.contactsList);
         contactsList.setOnItemClickListener(this);
+        contactsList.setOnItemSelectedListener(this);
         
         newContact = (TextView) view.findViewById(R.id.newContact);
         newContact.setOnClickListener(this);
@@ -92,13 +96,48 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 	public void onItemClick(AdapterView<?> adapter, View view, int position,
 			long id) {
 		Contact contact = (Contact) adapter.getItemAtPosition(position);
-		if (editOnClick) {
-			editConsumed = true;
-			LinphoneActivity.instance().editContact(contact, sipAddressToAdd);
-		} else {
+		String address = null;
+		for (String numberOrAddress : contact.getNumbersOrAddresses()) {
+			address = numberOrAddress;
+		}
+		if (address != null && LinphoneActivity.isInstanciated()) {
+			LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+			address += "@linphone.org";
+			if (lc != null) {
+				LinphoneProxyConfig lpc = lc.getDefaultProxyConfig();
+				String to;
+				if (lpc != null) {
+					if (!address.contains("@")) {
+						to = lpc.normalizePhoneNumber(address);
+					} else {
+						to = address;
+					}
+				} else {
+					to = address;
+				}
+				Toast.makeText(getActivity(), "To:"+to, Toast.LENGTH_SHORT).show();
+				LinphoneActivity.instance().setAddresGoToDialerAndCall(to, contact.getName(), contact.getPhotoUri());
+			}
+		}
+	}
+
+
+	@Override
+	public void onItemSelected(AdapterView<?> adapter, View view, int position,
+			long id) {
+		//Toast.makeText(getActivity(), "Select:"+position, Toast.LENGTH_SHORT).show();
+		try{
+			Contact contact = (Contact) adapter.getItemAtPosition(position);
 			lastKnownPosition = contactsList.getFirstVisiblePosition();
 			LinphoneActivity.instance().displayContact(contact, onlyDisplayChatAddress);
 		}
+		catch(Exception e) {}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
