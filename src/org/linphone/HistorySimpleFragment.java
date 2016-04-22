@@ -47,6 +47,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,7 +56,7 @@ import android.widget.TextView;
 /**
  * @author Sylvain Berfini
  */
-public class HistorySimpleFragment extends Fragment implements OnClickListener, OnItemClickListener {
+public class HistorySimpleFragment extends Fragment implements OnClickListener, OnItemSelectedListener, OnItemClickListener {
 	private ListView historyList;
 	private LayoutInflater mInflater;
 	private TextView allCalls, missedCalls, edit, ok, deleteAll, noCallHistory, noMissedCallHistory;
@@ -73,6 +74,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
         
         historyList = (ListView) view.findViewById(R.id.historyList);
         historyList.setOnItemClickListener(this);
+        historyList.setOnItemSelectedListener(this);
         registerForContextMenu(historyList);
         
         deleteAll = (TextView) view.findViewById(R.id.deleteAll);
@@ -222,6 +224,27 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 				LinphoneActivity.instance().setAddresGoToDialerAndCall(address.asStringUriOnly(), address.getDisplayName(), null);
 			}
 		}
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		LinphoneCallLog log = mLogs.get(position);
+		LinphoneAddress address;
+		if (log.getDirection() == CallDirection.Incoming) {
+			address = log.getFrom();
+		} else {
+			address = log.getTo();
+		}
+		if (LinphoneActivity.isInstanciated()) {
+			LinphoneActivity.instance().displayHistoryDetail(address.asStringUriOnly(), log);
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	private void hideDeleteAllButton() {

@@ -41,17 +41,21 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author Sylvain Berfini
  */
-public class HistoryFragment extends Fragment implements OnClickListener, OnChildClickListener, OnGroupClickListener {
+public class HistoryFragment extends Fragment implements OnClickListener, OnItemSelectedListener, OnChildClickListener, OnGroupClickListener {
 	private ExpandableListView historyList;
 	private LayoutInflater mInflater;
 	private TextView allCalls, missedCalls, edit, ok, deleteAll, noCallHistory, noMissedCallHistory;
@@ -70,6 +74,7 @@ public class HistoryFragment extends Fragment implements OnClickListener, OnChil
         historyList = (ExpandableListView) view.findViewById(R.id.historyList);
         historyList.setOnChildClickListener(this);
         historyList.setOnGroupClickListener(this);
+        historyList.setOnItemSelectedListener(this);
         
         deleteAll = (TextView) view.findViewById(R.id.deleteAll);
         deleteAll.setOnClickListener(this);
@@ -276,6 +281,34 @@ public class HistoryFragment extends Fragment implements OnClickListener, OnChil
 			LinphoneActivity.instance().setAddresGoToDialerAndCall(address.asStringUriOnly(), address.getDisplayName(), null);
 		}
 		return false;
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), "selected", Toast.LENGTH_SHORT).show();
+        if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+        	long packedPos = ((ExpandableListView) parent).getExpandableListPosition(position);
+            int groupPosition = ExpandableListView.getPackedPositionGroup(packedPos);
+            int childPosition = ExpandableListView.getPackedPositionChild(packedPos);
+    		LinphoneCallLog log = mLogs.get(groupPosition).get(childPosition);
+			LinphoneAddress address;
+			if (log.getDirection() == CallDirection.Incoming) {
+				address = log.getFrom();
+			} else {
+				address = log.getTo();
+			}
+			if (LinphoneActivity.isInstanciated()) {
+				LinphoneActivity.instance().displayHistoryDetail(address.asStringUriOnly(), log);
+			}
+        }
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	private void hideDeleteAllButton() {
