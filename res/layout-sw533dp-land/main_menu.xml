@@ -12,6 +12,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@drawable/history_ic"
+            android:focusable="true"
+            android:background="@drawable/linearlayout_selector"
             android:visibility="visible" />
         
         <ImageView
@@ -22,6 +24,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@drawable/dialer_ic"
+            android:focusable="true"
+            android:background="@drawable/linearlayout_selector"
             android:visibility="visible" />
 
         <ImageView
@@ -32,7 +36,9 @@
             android:layout_weight="0.33"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:src="@drawable/contact_ic"
+            android:focusable="true"
+            android:background="@drawable/linearlayout_selector"
+            android:src="@drawable/contacts_ic"
             android:visibility="visible" />
 
 </LinearLayout>
