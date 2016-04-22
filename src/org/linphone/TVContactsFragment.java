@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.linphone.ContactsFragment.ContactsListAdapter;
 import org.linphone.compatibility.Compatibility;
+import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneFriend;
+import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.core.PresenceActivityType;
 
 import android.annotation.SuppressLint;
@@ -94,12 +96,28 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 	public void onItemClick(AdapterView<?> adapter, View view, int position,
 			long id) {
 		Contact contact = (Contact) adapter.getItemAtPosition(position);
-		if (editOnClick) {
-			editConsumed = true;
-			LinphoneActivity.instance().editContact(contact, sipAddressToAdd);
-		} else {
-			lastKnownPosition = contactsList.getFirstVisiblePosition();
-			LinphoneActivity.instance().displayContact(contact, onlyDisplayChatAddress);
+		String address = null;
+		for (String numberOrAddress : contact.getNumbersOrAddresses()) {
+			address = numberOrAddress;
+		}
+		if (address != null && LinphoneActivity.isInstanciated()) {
+			LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+			address += "@linphone.org";
+			if (lc != null) {
+				LinphoneProxyConfig lpc = lc.getDefaultProxyConfig();
+				String to;
+				if (lpc != null) {
+					if (!address.contains("@")) {
+						to = lpc.normalizePhoneNumber(address);
+					} else {
+						to = address;
+					}
+				} else {
+					to = address;
+				}
+				Toast.makeText(getActivity(), "To:"+to, Toast.LENGTH_SHORT).show();
+				LinphoneActivity.instance().setAddresGoToDialerAndCall(to, contact.getName(), contact.getPhotoUri());
+			}
 		}
 	}
 
@@ -108,9 +126,12 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 	public void onItemSelected(AdapterView<?> adapter, View view, int position,
 			long id) {
 		//Toast.makeText(getActivity(), "Select:"+position, Toast.LENGTH_SHORT).show();
-		Contact contact = (Contact) adapter.getItemAtPosition(position);
-		lastKnownPosition = contactsList.getFirstVisiblePosition();
-		LinphoneActivity.instance().displayContact(contact, onlyDisplayChatAddress);
+		try{
+			Contact contact = (Contact) adapter.getItemAtPosition(position);
+			lastKnownPosition = contactsList.getFirstVisiblePosition();
+			LinphoneActivity.instance().displayContact(contact, onlyDisplayChatAddress);
+		}
+		catch(Exception e) {}
 	}
 
 	@Override
