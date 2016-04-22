@@ -508,6 +508,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			transaction.replace(R.id.fragmentContainer2, newFragment);
 		} else {
 			if (newFragmentType == FragmentsAvailable.DIALER
+					|| newFragmentType == FragmentsAvailable.MAIN	//
 					|| newFragmentType == FragmentsAvailable.ABOUT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 					|| newFragmentType == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS
