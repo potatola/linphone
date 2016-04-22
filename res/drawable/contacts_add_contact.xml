@@ -4,6 +4,8 @@
         android:drawable="@drawable/contacts_add_over" />
     <item android:state_enabled="false" 
         android:drawable="@drawable/contacts_add_over" />
+    <item android:state_focused="true" 
+        android:drawable="@drawable/contacts_add_over" />
     <item
          android:drawable="@drawable/contacts_add_default" />
 </selector>
