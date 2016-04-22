@@ -62,6 +62,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 	private TextView allCalls, missedCalls, edit, ok, deleteAll, noCallHistory, noMissedCallHistory;
 	private boolean onlyDisplayMissedCalls, isEditMode;
 	private List<LinphoneCallLog> mLogs; 
+	private boolean firstSelect = true;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -145,6 +146,8 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 		if (!hideHistoryListAndDisplayMessageIfEmpty()) {
 			historyList.setAdapter(new CallHistoryAdapter(getActivity()));
 		}
+		
+		firstSelect = true;
 	}
 
 	@Override
@@ -229,6 +232,10 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
+		if (firstSelect) {
+			firstSelect = false;
+			return;
+		}
 		LinphoneCallLog log = mLogs.get(position);
 		LinphoneAddress address;
 		if (log.getDirection() == CallDirection.Incoming) {
