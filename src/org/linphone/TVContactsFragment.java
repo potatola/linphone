@@ -91,6 +91,19 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 			contactsList.setAdapter(new ContactsListAdapter(ContactsManager.getInstance().getAllContacts(), allContactsCursor));
 		}
 	}
+	
+	public boolean checkIP(String s) {
+		if(s.length() != 12) return false;
+		char[] cs=s.toCharArray();
+		for(char c : cs) {
+			if(c < '0' || c > '9') return false;
+		}
+		return true;
+	}
+	
+	public String addPoint(String ip) {
+		return ip.substring(0, 3) +"."+ ip.substring(3, 6) +"."+ ip.substring(6, 9) +"."+ ip.substring(9, 12);
+	}
 
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position,
@@ -100,9 +113,10 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 		for (String numberOrAddress : contact.getNumbersOrAddresses()) {
 			address = numberOrAddress;
 		}
-		if (address != null && LinphoneActivity.isInstanciated()) {
+		if (address != null && checkIP(address) && LinphoneActivity.isInstanciated()) {
 			LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
-			address += "@linphone.org";
+			address = "linphone.android@" + addPoint(address);
+			Toast.makeText(getActivity(), "To:"+address, Toast.LENGTH_SHORT).show();
 			if (lc != null) {
 				LinphoneProxyConfig lpc = lc.getDefaultProxyConfig();
 				String to;
