@@ -1281,6 +1281,10 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 				displayContacts(false);
 				return true;
 			}
+			else if (currentFragment == FragmentsAvailable.HISTORY_DETAIL) {
+				displayHistory();
+				return true;
+			}
 			else if (currentFragment == FragmentsAvailable.CHATLIST
 					|| currentFragment == FragmentsAvailable.ABOUT_INSTEAD_OF_CHAT
 					|| currentFragment == FragmentsAvailable.ABOUT_INSTEAD_OF_SETTINGS) {

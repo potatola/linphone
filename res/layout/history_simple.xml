@@ -69,6 +69,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
+			android:focusable="true"
 			android:layout_weight="1"/>
 
 		<TextView
