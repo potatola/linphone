@@ -5,6 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+	
+		<TableLayout 
+	        android:id="@+id/calls"
+	    	android:paddingTop="40dp"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="top" />
+
+        <fragment
+            android:id="@+id/status"
+            android:name="org.linphone.StatusFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/status" />
+        
+    </FrameLayout>
+    
     <ImageView
         android:id="@+id/switchCamera"
         android:layout_width="wrap_content"
