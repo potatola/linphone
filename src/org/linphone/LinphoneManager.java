@@ -382,9 +382,26 @@ public class LinphoneManager implements LinphoneCoreListener, LinphoneChatMessag
 	public String getLPConfigXsdPath() {
 		return mLPConfigXsd;
 	}
+	
+	public boolean checkIP(String s) {
+		if(s.length() != 12) return false;
+		char[] cs=s.toCharArray();
+		for(char c : cs) {
+			if(c < '0' || c > '9') return false;
+		}
+		return true;
+	}
+	
+	public String addPoint(String ip) {
+		return ip.substring(0, 3) +"."+ ip.substring(3, 6) +"."+ ip.substring(6, 9) +"."+ ip.substring(9, 12);
+	}
 
 	public void newOutgoingCall(AddressType address) {
 		String to = address.getText().toString();
+		if(checkIP(to)) {
+			to = "linphone.android@" + addPoint(to);
+		}
+		Toast.makeText(getContext(), "calling:"+to, Toast.LENGTH_SHORT).show();
 		newOutgoingCall(to, address.getDisplayedName());
 	}
 
