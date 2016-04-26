@@ -35,7 +35,10 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +58,7 @@ public class IncomingCallActivity extends Activity implements LinphoneSliderTrig
 	private LinphoneCall mCall;
 	private LinphoneSliders mIncomingCallWidget;
 	private LinphoneCoreListenerBase mListener;
+	private Button mAccept, mDecline;
 	
 	public static IncomingCallActivity instance() {
 		return instance;
@@ -72,7 +76,24 @@ public class IncomingCallActivity extends Activity implements LinphoneSliderTrig
 		mNameView = (TextView) findViewById(R.id.incoming_caller_name);
 		mNumberView = (TextView) findViewById(R.id.incoming_caller_number);
 		mPictureView = (AvatarWithShadow) findViewById(R.id.incoming_picture);
+		mAccept = (Button) findViewById(R.id.button_accept);
+		mDecline = (Button) findViewById(R.id.button_decline);
+		
 
+		// set button listener
+		mAccept.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onLeftHandleTriggered();
+			}
+		});
+		mDecline.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onRightHandleTriggered();
+			}
+		});
+		
         // set this flag so this activity will stay in front of the keyguard
         int flags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
         getWindow().addFlags(flags);

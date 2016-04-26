@@ -59,6 +59,30 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:layout_gravity="center_horizontal" />
+
+			<RelativeLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+
+				<Button
+				    android:id="@+id/button_accept"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentTop="true"
+				    android:layout_marginRight="16dp"
+				    android:layout_toLeftOf="@+id/button_decline"
+				    android:background="@drawable/slider_left" />
+			    
+				<Button
+				    android:id="@+id/button_decline"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentRight="true"
+				    android:layout_alignParentTop="true"
+				    android:layout_marginRight="86dp"
+				    android:background="@drawable/slider_right" />
+			</RelativeLayout>
 	
 		</LinearLayout>
 		
@@ -69,6 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_marginBottom="80dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

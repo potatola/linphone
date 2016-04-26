@@ -4,33 +4,6 @@
     android:id="@+id/topLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
-
-        <LinearLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
-	
-		<TableLayout 
-	        android:id="@+id/calls"
-	    	android:paddingTop="40dp"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:gravity="top" />
-
-        <fragment
-            android:id="@+id/status"
-            android:name="org.linphone.StatusFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/status" />
-        
-    </FrameLayout>
 
     <ImageView
         android:id="@+id/switchCamera"
@@ -63,7 +36,8 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_gravity="bottom"
 	        android:gravity="bottom"
-	        android:orientation="horizontal" >
+	        android:orientation="horizontal"
+	        android:visibility="gone" >
 	        	        
 	        <RelativeLayout   
                 android:layout_width="wrap_content"
@@ -148,11 +122,12 @@
 	    </LinearLayout>
 	    
 	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
 	        android:layout_alignParentBottom="true"
 	        android:layout_alignParentRight="true"
 	        android:orientation="horizontal"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content">
+	        android:visibility="gone" >
 	        
 	        <TextView
 		        android:id="@+id/conference"
@@ -176,14 +151,17 @@
 	            android:layout_height="wrap_content"
 	            android:background="@drawable/dialer_alt" />
 	        
-	        <TextView
-		        android:id="@+id/hangUp"
-                android:contentDescription="@string/content_description_hang_up"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:background="@drawable/hangup" />
-	        
 	    </LinearLayout>
+
+	    <TextView
+	        android:id="@+id/hangUp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_centerHorizontal="true"
+	        android:focusable="true"
+	        android:background="@drawable/hangup"
+	        android:contentDescription="@string/content_description_hang_up" />
     
     </RelativeLayout>
 
