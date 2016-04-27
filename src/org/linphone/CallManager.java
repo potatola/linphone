@@ -55,11 +55,11 @@ public class CallManager {
 		LinphoneCallParams params = lc.createCallParams(null);
 		bm().updateWithProfileSettings(lc, params);
 
-		if (videoEnabled && params.getVideoEnabled()) {
+		//if (videoEnabled && params.getVideoEnabled()) {
 			params.setVideoEnabled(true);
-		} else {
-			params.setVideoEnabled(false);
-		}
+		//} else {
+		//	params.setVideoEnabled(false);
+		//}
 		
 		if (lowBandwidth) {
 			params.enableLowBandwidth(true);

@@ -63,25 +63,28 @@
 			<RelativeLayout
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
-			    android:orientation="horizontal" >
+			    android:orientation="horizontal"
+			    android:paddingLeft="100dp"
+			    android:paddingRight="100dp" >
+
+				<Button
+				    android:id="@+id/button_decline"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentLeft="true"
+				    android:layout_alignParentTop="true"
+				    android:focusable="true"
+				    android:background="@drawable/decline" />
 
 				<Button
 				    android:id="@+id/button_accept"
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"
-				    android:layout_alignParentTop="true"
-				    android:layout_marginRight="16dp"
-				    android:layout_toLeftOf="@+id/button_decline"
-				    android:background="@drawable/slider_left" />
-			    
-				<Button
-				    android:id="@+id/button_decline"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
 				    android:layout_alignParentRight="true"
 				    android:layout_alignParentTop="true"
-				    android:layout_marginRight="86dp"
-				    android:background="@drawable/slider_right" />
+				    android:focusable="true"
+				    android:background="@drawable/accept" />
+
 			</RelativeLayout>
 	
 		</LinearLayout>

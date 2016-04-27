@@ -372,7 +372,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 	        slideOutBottomToTop = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom_to_top);
 	        slideOutTopToBottom = AnimationUtils.loadAnimation(this, R.anim.slide_out_top_to_bottom);
         }
-
+/*
 		if (BluetoothManager.getInstance().isBluetoothHeadsetAvailable()) {
 			try {
 				if (routeLayout != null)
@@ -388,7 +388,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 				speaker.setVisibility(View.VISIBLE);
 			} catch (NullPointerException npe) { Log.e("Bluetooth: Audio routes menu disabled on tablets for now (3)"); }
 		}
-		
+		*/
 		LinphoneManager.getInstance().changeStatusToOnThePhone();
 	}
 	
@@ -423,7 +423,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 		} catch (NullPointerException npe) {
 			Log.e("Bluetooth: Audio routes menu disabled on tablets for now (4)");
 		}
-		
+/*		
 		if (isMicMuted) {
 			micro.setBackgroundResource(R.drawable.micro_off);
 		} else {
@@ -443,7 +443,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 			} else {
 				pause.setBackgroundResource(R.drawable.pause_off);
 			}
-		}
+		}*/
 	}
 	
 	private void enableAndRefreshInCallActions() {
@@ -564,7 +564,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 			LinphoneManager.getLc().updateCall(call, params);
 		} else {
 			video.setEnabled(false);
-			videoProgress.setVisibility(View.VISIBLE);
+//			videoProgress.setVisibility(View.VISIBLE);
 			if (!call.getRemoteParams().isLowBandwidthEnabled()) {
 				LinphoneManager.getInstance().addVideo();
 			} else {
@@ -645,7 +645,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 	
 	private void replaceFragmentAudioByVideo() {
 //		Hiding controls to let displayVideoCallControlsIfHidden add them plus the callback
-		mControlsLayout.setVisibility(View.GONE);
+//		mControlsLayout.setVisibility(View.GONE);
 		switchCamera.setVisibility(View.INVISIBLE);
 		
 		videoCallFragment = new VideoCallFragment();
@@ -798,7 +798,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 					if (isAnimationDisabled) {
 						transfer.setVisibility(View.INVISIBLE);
 						addCall.setVisibility(View.INVISIBLE);
-						mControlsLayout.setVisibility(View.GONE);
+//						mControlsLayout.setVisibility(View.GONE);
 						callsList.setVisibility(View.GONE);
 						switchCamera.setVisibility(View.INVISIBLE);
 						numpad.setVisibility(View.GONE);
@@ -820,7 +820,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 								video.setEnabled(true); // HACK: Used to avoid controls from being hided if video is switched while controls are hiding
 								transfer.setVisibility(View.INVISIBLE);
 								addCall.setVisibility(View.INVISIBLE);
-								mControlsLayout.setVisibility(View.GONE);
+//								mControlsLayout.setVisibility(View.GONE);
 								callsList.setVisibility(View.GONE);
 								switchCamera.setVisibility(View.INVISIBLE);
 								numpad.setVisibility(View.GONE);
