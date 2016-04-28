@@ -7,5 +7,5 @@
     	android:state_focused="true" 
         android:drawable="@color/deepskyblue" />
     <item 
-        android:drawable="@color/main_menuitem"/>
+        android:drawable="@color/mediumblue"/>
 </selector>

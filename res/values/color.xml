@@ -3,8 +3,9 @@
     <color name="main_app_color">#A9A9A9</color>
     <color name="gray">#808080</color>
     <color name="dimgray">#696969</color>
-    <color name="deepskyblue">#00BFFF</color>
+    <color name="deepskyblue">#003E3E</color>
     <color name="sandybrown">#F4A460</color>
+	<color name="mediumblue">#336666</color>
     <color name="main_menuitem">#3c95a9</color>
     
     <color name="text_selected">#ffcf4c29</color>
