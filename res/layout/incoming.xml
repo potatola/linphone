@@ -69,8 +69,8 @@
 
 				<Button
 				    android:id="@+id/button_decline"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
+				    android:layout_width="150dp"
+				    android:layout_height="150dp"
 				    android:layout_alignParentLeft="true"
 				    android:layout_alignParentTop="true"
 				    android:focusable="true"
@@ -78,8 +78,8 @@
 
 				<Button
 				    android:id="@+id/button_accept"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
+				    android:layout_width="150dp"
+				    android:layout_height="150dp"
 				    android:layout_alignParentRight="true"
 				    android:layout_alignParentTop="true"
 				    android:focusable="true"

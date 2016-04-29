@@ -55,10 +55,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * @author Sylvain Berfini
+ * @author niutong
  */
-public class HistorySimpleFragment extends Fragment implements OnClickListener, OnItemSelectedListener, OnItemClickListener {
-	private ListView historyList;
+public class TVHistoryFragment extends Fragment implements OnClickListener, OnItemSelectedListener, OnItemClickListener {
+	private GridView historyList;
 	private LayoutInflater mInflater;
 	private TextView allCalls, missedCalls, edit, ok, deleteAll, noCallHistory, noMissedCallHistory;
 	private boolean onlyDisplayMissedCalls, isEditMode;
@@ -69,12 +69,12 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
         Bundle savedInstanceState) {
 		mInflater = inflater;
-        View view = inflater.inflate(R.layout.history_simple, container, false);
+        View view = inflater.inflate(R.layout.history_simple_tv, container, false);
         
         noCallHistory = (TextView) view.findViewById(R.id.noCallHistory);
         noMissedCallHistory = (TextView) view.findViewById(R.id.noMissedCallHistory);
         
-        historyList = (ListView) view.findViewById(R.id.historyGrid);
+        historyList = (GridView) view.findViewById(R.id.historyGrid);
         historyList.setOnItemClickListener(this);
         historyList.setOnItemSelectedListener(this);
         registerForContextMenu(historyList);
@@ -377,7 +377,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 			if (convertView != null) {
 				view = convertView;
 			} else {
-				view = mInflater.inflate(R.layout.history_cell_simple, parent,false);
+				view = mInflater.inflate(R.layout.history_cell_simple_tv, parent,false);
 			}
 			
 			final LinphoneCallLog log = mLogs.get(position);
@@ -386,9 +386,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 			
 			TextView contact = (TextView) view.findViewById(R.id.sipUri);
 			contact.setSelected(true); // For automated horizontal scrolling of long texts
-			
-			ImageView detail = (ImageView) view.findViewById(R.id.detail);
-			ImageView delete = (ImageView) view.findViewById(R.id.delete);
+
 			ImageView callDirection = (ImageView) view.findViewById(R.id.icon);
 			
 			TextView separator = (TextView) view.findViewById(R.id.separator);
@@ -396,20 +394,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 			logTime.setTimeInMillis(timestamp);
 			separator.setText(timestampToHumanDate(logTime));
 			
-			if (position > 0) {
-				LinphoneCallLog previousLog = mLogs.get(position-1);
-				long previousTimestamp = previousLog.getTimestamp();
-				Calendar previousLogTime = Calendar.getInstance();
-				previousLogTime.setTimeInMillis(previousTimestamp);
-
-				if (isSameDay(previousLogTime, logTime)) {
-					separator.setVisibility(View.GONE);
-				} else {
-					separator.setVisibility(View.VISIBLE);
-				}
-			} else {
-				separator.setVisibility(View.VISIBLE);
-			}
+			separator.setVisibility(View.GONE);
 			
 			if (log.getDirection() == CallDirection.Incoming) {
 				address = log.getFrom();

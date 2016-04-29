@@ -376,7 +376,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			break;
 		case HISTORY:
 			if (getResources().getBoolean(R.bool.use_simple_history)) {
-				newFragment = new HistorySimpleFragment();
+				newFragment = new TVHistoryFragment();
 			} else {
 				newFragment = new HistoryFragment();
 			}
