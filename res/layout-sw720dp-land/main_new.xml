@@ -74,16 +74,16 @@
     
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/mark"
         android:layout_alignParentTop="true" >
 
         <LinearLayout
-            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="horizontal"
-            android:paddingTop="40dp">
+            android:paddingTop="40dp" >
         
 	        <LinearLayout
 	            android:id="@+id/fragmentContainer"
@@ -100,14 +100,6 @@
 	            android:paddingBottom="10dp" />
         
         </LinearLayout>
-
-        <fragment
-            android:id="@+id/status"
-            android:name="org.linphone.StatusFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:layout="@layout/status" />
         
     </FrameLayout>
 
