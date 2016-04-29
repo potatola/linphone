@@ -49,6 +49,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ import android.widget.TextView;
  * @author Sylvain Berfini
  */
 public class HistorySimpleFragment extends Fragment implements OnClickListener, OnItemSelectedListener, OnItemClickListener {
-	private ListView historyList;
+	private GridView historyList;
 	private LayoutInflater mInflater;
 	private TextView allCalls, missedCalls, edit, ok, deleteAll, noCallHistory, noMissedCallHistory;
 	private boolean onlyDisplayMissedCalls, isEditMode;
@@ -68,12 +69,12 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
         Bundle savedInstanceState) {
 		mInflater = inflater;
-        View view = inflater.inflate(R.layout.history_simple, container, false);
+        View view = inflater.inflate(R.layout.history_simple_tv, container, false);
         
         noCallHistory = (TextView) view.findViewById(R.id.noCallHistory);
         noMissedCallHistory = (TextView) view.findViewById(R.id.noMissedCallHistory);
         
-        historyList = (ListView) view.findViewById(R.id.historyList);
+        historyList = (GridView) view.findViewById(R.id.historyGrid);
         historyList.setOnItemClickListener(this);
         historyList.setOnItemSelectedListener(this);
         registerForContextMenu(historyList);
@@ -376,7 +377,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 			if (convertView != null) {
 				view = convertView;
 			} else {
-				view = mInflater.inflate(R.layout.history_cell_simple, parent,false);
+				view = mInflater.inflate(R.layout.history_cell_simple_tv, parent,false);
 			}
 			
 			final LinphoneCallLog log = mLogs.get(position);
@@ -395,20 +396,22 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 			logTime.setTimeInMillis(timestamp);
 			separator.setText(timestampToHumanDate(logTime));
 			
-			if (position > 0) {
-				LinphoneCallLog previousLog = mLogs.get(position-1);
-				long previousTimestamp = previousLog.getTimestamp();
-				Calendar previousLogTime = Calendar.getInstance();
-				previousLogTime.setTimeInMillis(previousTimestamp);
-
-				if (isSameDay(previousLogTime, logTime)) {
-					separator.setVisibility(View.GONE);
-				} else {
-					separator.setVisibility(View.VISIBLE);
-				}
-			} else {
-				separator.setVisibility(View.VISIBLE);
-			}
+//			if (position > 0) {
+//				LinphoneCallLog previousLog = mLogs.get(position-1);
+//				long previousTimestamp = previousLog.getTimestamp();
+//				Calendar previousLogTime = Calendar.getInstance();
+//				previousLogTime.setTimeInMillis(previousTimestamp);
+//
+//				if (isSameDay(previousLogTime, logTime)) {
+//					separator.setVisibility(View.GONE);
+//				} else {
+//					separator.setVisibility(View.VISIBLE);
+//				}
+//			} else {
+//				separator.setVisibility(View.VISIBLE);
+//			}
+			
+			separator.setVisibility(View.GONE);
 			
 			if (log.getDirection() == CallDirection.Incoming) {
 				address = log.getFrom();
@@ -443,22 +446,6 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 				}
 			}
 			view.setTag(sipUri);
-			
-			if (isEditMode) {
-				delete.setVisibility(View.VISIBLE);
-				detail.setVisibility(View.GONE);
-			} else {
-				delete.setVisibility(View.GONE);
-				detail.setVisibility(View.VISIBLE);
-				detail.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						if (LinphoneActivity.isInstanciated()) {
-							LinphoneActivity.instance().displayHistoryDetail(sipUri, log);
-						}
-					}
-				});
-			}
 
 			return view;
 		}		  

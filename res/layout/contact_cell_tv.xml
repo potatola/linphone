@@ -32,7 +32,8 @@
 			android:gravity="center"
 		    android:textAppearance="?android:attr/textAppearanceSmall"
 		    android:textColor="@color/text_contrast"
-		    android:textSize="30dp"
+		    android:textSize="30sp"
+		    android:textStyle="bold"
 		    android:layout_marginLeft="10dp" />
 	
 	</RelativeLayout>

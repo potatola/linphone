@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="200dp"
-    android:layout_marginTop="80dp"
+    android:layout_marginTop="85dp"
     android:orientation="vertical" >
 
 	<LinearLayout
@@ -67,14 +67,13 @@
 		    android:layout_margin="5dp"
 		    android:cacheColorHint="@color/transparent"
 		    android:columnWidth="220dp"
-		    android:fastScrollAlwaysVisible="true"
 		    android:fastScrollEnabled="true"
 		    android:gravity="center"
 		    android:horizontalSpacing="20dp"
 		    android:numColumns="4"
 		    android:scrollbars="none"
 		    android:stretchMode="spacingWidth"
-		    android:verticalSpacing="50dp" />
+		    android:verticalSpacing="40dp" />
 
 		<TextView
 			android:id="@+id/noContact"

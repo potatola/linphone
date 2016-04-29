@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="240dp"
-    android:background="@drawable/background"
+    android:layout_marginLeft="200dp"
+	android:layout_marginTop="85dp"
     android:orientation="vertical" >
 
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_marginLeft="240dp"
 	    android:background="@drawable/toolsbar_background"
 	    android:orientation="horizontal"
 	    android:visibility="gone" >
@@ -99,7 +98,23 @@
 		android:layout_height="match_parent"
 		android:divider="@android:color/darker_gray"
 		android:cacheColorHint="@color/transparent"
-		android:dividerHeight="1dp" />
+		android:dividerHeight="1dp"
+		android:visibility="gone" />
+	
+	<GridView
+		    android:id="@+id/historyGrid"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_margin="5dp"
+		    android:cacheColorHint="@color/transparent"
+		    android:columnWidth="220dp"
+		    android:fastScrollEnabled="true"
+		    android:gravity="center"
+		    android:horizontalSpacing="20dp"
+		    android:numColumns="4"
+		    android:scrollbars="none"
+		    android:stretchMode="spacingWidth"
+		    android:verticalSpacing="40dp" />
 
 	<TextView
 		android:id="@+id/noCallHistory"
