@@ -49,9 +49,9 @@
 			    android:layout_height="wrap_content"
 			    linphone:picture="@drawable/unknown_small"
 				android:scaleType="fitCenter"
-				android:minWidth="128dp" 
-				android:minHeight="128dp"
-				android:paddingBottom="10sp" />
+				android:minWidth="160dp" 
+				android:minHeight="160dp"
+				android:paddingBottom="20sp" />
 			
 			<TextView 
 			    android:id="@+id/incoming_caller_name"
@@ -64,27 +64,26 @@
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
 			    android:orientation="horizontal"
-			    android:paddingLeft="100dp"
-			    android:paddingRight="100dp" >
-
-				<Button
-				    android:id="@+id/button_decline"
-				    android:layout_width="150dp"
-				    android:layout_height="150dp"
-				    android:layout_alignParentLeft="true"
-				    android:layout_alignParentTop="true"
-				    android:focusable="true"
-				    android:background="@drawable/decline" />
+			    android:paddingLeft="240dp"
+			    android:paddingRight="240dp" >
 
 				<Button
 				    android:id="@+id/button_accept"
 				    android:layout_width="150dp"
 				    android:layout_height="150dp"
-				    android:layout_alignParentRight="true"
+				    android:layout_alignParentLeft="true"
 				    android:layout_alignParentTop="true"
 				    android:focusable="true"
 				    android:background="@drawable/accept" />
-
+				
+				<Button
+				    android:id="@+id/button_decline"
+				    android:layout_width="150dp"
+				    android:layout_height="150dp"
+				    android:layout_alignParentRight="true"
+				    android:layout_alignParentTop="true"
+				    android:focusable="true"
+				    android:background="@drawable/decline" />
 			</RelativeLayout>
 	
 		</LinearLayout>
