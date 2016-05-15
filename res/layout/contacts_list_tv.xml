@@ -69,6 +69,7 @@
 		    android:cacheColorHint="@color/transparent"
 		    android:columnWidth="220dp"
 		    android:fastScrollEnabled="true"
+		    android:focusable="true"
 		    android:gravity="center"
 		    android:horizontalSpacing="20dp"
 		    android:numColumns="4"

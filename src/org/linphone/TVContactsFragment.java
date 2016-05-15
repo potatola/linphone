@@ -75,6 +75,8 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
         newContact.setOnClickListener(this);
         newContact.setEnabled(LinphoneManager.getLc().getCallsNb() == 0);
         
+        contactsList.requestFocus();
+        
         return view;
 	}
 	
@@ -166,6 +168,8 @@ public class TVContactsFragment extends Fragment implements OnClickListener, OnI
 	public void onResume() {
 		instance = this;
 		super.onResume();
+		
+        contactsList.requestFocus();
 		
 		if (editConsumed) {
 			editOnClick = false;

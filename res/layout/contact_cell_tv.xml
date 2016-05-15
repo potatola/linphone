@@ -6,6 +6,8 @@
     android:gravity="center"
     android:background="@drawable/list_selector"
     android:alpha="0.5"
+    android:focusable="true"
+    android:descendantFocusability="beforeDescendants"
     android:orientation="vertical" >
     
     <RelativeLayout

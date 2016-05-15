@@ -135,6 +135,8 @@ public class TVHistoryFragment extends Fragment implements OnClickListener, OnIt
 	public void onResume() {
 		super.onResume();
 		
+		historyList.requestFocus();
+		
 		if (LinphoneActivity.isInstanciated()) {
 			LinphoneActivity.instance().selectMenu(FragmentsAvailable.HISTORY);
 			

@@ -5,6 +5,7 @@
     android:background="@drawable/list_selector"
     android:gravity="center"
     android:alpha="0.5"
+    android:focusable="true"
     android:orientation="vertical" >
     
     <TextView
