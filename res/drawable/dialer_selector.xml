@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
     	android:state_pressed="true" 
-        android:drawable="@color/main_app_color" />
+        android:drawable="@color/light_orange" />
     <item 
     	android:state_focused="true"
-    	android:drawable="@color/light_yellow" />
+    	android:drawable="@color/white" />
     <item  
-        android:drawable="@color/light_orange" />
+        android:drawable="@color/white" />
 </selector>

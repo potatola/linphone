@@ -9,7 +9,7 @@ use_ipv6=0
 keepalive_period=30000
 
 [video]
-size=720p
+size=qvga
 
 [app]
 sharing_server=https://www.linphone.org:444/lft.php
