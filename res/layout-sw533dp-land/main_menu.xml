@@ -15,28 +15,30 @@
        <ImageView
             android:id="@+id/main_setting_ic"
             android:layout_weight="0.5"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
             android:layout_marginBottom="20dp"
+            android:padding="20dp"
             android:background="@drawable/linearlayout_selector"
             android:focusable="true"
-            android:src="@drawable/calendar"
+            android:src="@drawable/setting"
             android:foreground="@color/sandybrown"
             android:visibility="visible" />
        
        <ImageView
             android:id="@+id/main_reserved_ic"
             android:layout_weight="0.5"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/linearlayout_selector"
             android:focusable="true"
-            android:src="@drawable/calendar"
+            android:src="@drawable/folder"
             android:foreground="@color/sandybrown"
             android:visibility="visible" />
 
@@ -50,7 +52,7 @@
 
         <ImageView
             android:id="@+id/main_history_ic"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="40dp"
@@ -87,7 +89,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="180dp"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:background="@drawable/linearlayout_selector"
             android:focusable="true"
             android:paddingLeft="20dp"
@@ -118,7 +120,7 @@
             android:layout_marginTop="180dp"
             android:background="@drawable/linearlayout_selector"
             android:focusable="true"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:src="@drawable/people"
