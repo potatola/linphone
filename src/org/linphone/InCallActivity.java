@@ -147,7 +147,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
         		}
         		
         		if (state == State.Paused || state == State.PausedByRemote ||  state == State.Pausing) {
-        			video.setEnabled(false);
+        			video.setEnabled(true);
         			if(isVideoEnabled(call)){
         				showAudioView();
         			}
@@ -278,7 +278,8 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 	
 	private boolean isVideoEnabled(LinphoneCall call) {
 		if(call != null){
-			return call.getCurrentParamsCopy().getVideoEnabled();
+//			return call.getCurrentParamsCopy().getVideoEnabled();
+			return true;
 		}
 		return false;
 	}
