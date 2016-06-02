@@ -98,6 +98,8 @@ public class TVHistoryFragment extends Fragment implements OnClickListener, OnIt
         ok = (TextView) view.findViewById(R.id.ok);
         ok.setOnClickListener(this);
         
+        historyList.requestFocus();
+        
 		return view;
     }
 	
@@ -134,6 +136,8 @@ public class TVHistoryFragment extends Fragment implements OnClickListener, OnIt
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		historyList.requestFocus();
 		
 		if (LinphoneActivity.isInstanciated()) {
 			LinphoneActivity.instance().selectMenu(FragmentsAvailable.HISTORY);

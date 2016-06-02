@@ -5,10 +5,10 @@
         android:drawable="@color/main_app_color" />
     <item 
     	android:state_selected="true"
-        android:drawable="@color/deepskyblue" />
+        android:drawable="@color/light_yellow" />
     <item 
     	android:state_focused="true" 
-        android:drawable="@android:color/black" />
+        android:drawable="@color/light_yellow" />
     <item
-         android:drawable="@color/mediumblue" />
+         android:drawable="@color/light_orange" />
 </selector>

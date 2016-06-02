@@ -122,6 +122,8 @@ public class DialerFragment extends Fragment {
 			}
 		}
 		
+		mAddContact.requestFocus();
+		
 		return view;
     }
 
@@ -135,6 +137,8 @@ public class DialerFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		mAddContact.requestFocus();
 		
 		if (LinphoneActivity.isInstanciated()) {
 			LinphoneActivity.instance().selectMenu(FragmentsAvailable.DIALER);

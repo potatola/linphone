@@ -46,6 +46,8 @@ public class MainFragment extends Fragment {
 			}
         });
 		
+        mDialer.requestFocus();
+        
 		return view;
     }
 
