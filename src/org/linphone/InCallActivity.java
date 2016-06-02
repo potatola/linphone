@@ -166,9 +166,9 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
         			switchVideo(isVideoEnabled(call));
 
 					//Check media in progress
-					if(LinphonePreferences.instance().isVideoEnabled() && !call.mediaInProgress()){
+					//if(LinphonePreferences.instance().isVideoEnabled() && !call.mediaInProgress()){
 						video.setEnabled(true);
-					}
+					//}
 
         			LinphoneManager.getLc().enableSpeaker(isSpeakerEnabled);
 
