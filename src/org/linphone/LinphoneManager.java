@@ -393,7 +393,8 @@ public class LinphoneManager implements LinphoneCoreListener, LinphoneChatMessag
 	}
 	
 	public String addPoint(String ip) {
-		return ip.substring(0, 3) +"."+ ip.substring(3, 6) +"."+ ip.substring(6, 9) +"."+ ip.substring(9, 12);
+		return ip.substring(0, 3).replaceAll("^0+(?!$)", "") +"."+ ip.substring(3, 6).replaceAll("^0+(?!$)", "") +"."
+				+ ip.substring(6, 9).replaceAll("^0+(?!$)", "") +"."+ ip.substring(9, 12).replaceAll("^0+(?!$)", "");
 	}
 
 	public void newOutgoingCall(AddressType address) {
