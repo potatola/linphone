@@ -53,6 +53,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author niutong
@@ -421,7 +422,12 @@ public class TVHistoryFragment extends Fragment implements OnClickListener, OnIt
 
 			if (displayName == null) {
 				if (getResources().getBoolean(R.bool.only_display_username_if_unknown) && LinphoneUtils.isSipAddress(sipUri)) {
-					contact.setText(address.getUserName());
+//					contact.setText(address.getUserName());
+					String[] names = sipUri.split("@");
+					if( names[0].charAt(4) == 'l')
+						contact.setText(names[1]);
+					else
+						contact.setText(names[0].substring(4));
 				} else {
 					contact.setText(sipUri);
 				}
@@ -432,6 +438,7 @@ public class TVHistoryFragment extends Fragment implements OnClickListener, OnIt
 					contact.setText(sipUri);
 				}
 			}
+			
 			view.setTag(sipUri);
 
 			return view;
