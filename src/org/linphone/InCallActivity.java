@@ -1270,8 +1270,13 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+ 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+ 			hangUp();
+ 			return true;
+ 		}
 		if (LinphoneUtils.onKeyVolumeAdjust(keyCode)) return true;
  		if (LinphoneUtils.onKeyBackGoHome(this, keyCode, event)) return true;
+
  		return super.onKeyDown(keyCode, event);
  	}
 

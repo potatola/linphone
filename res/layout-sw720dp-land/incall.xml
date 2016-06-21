@@ -202,7 +202,7 @@
             android:focusable="true"
             android:gravity="center"
             android:paddingTop="30dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"

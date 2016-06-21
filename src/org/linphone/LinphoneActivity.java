@@ -1296,6 +1296,10 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 					return true;
 				}
 			} else {
+				LinphoneCore lc = LinphoneManager.getLc();
+				if( lc != null ) {
+					lc.terminateAllCalls();
+				}
 				if (isTablet()) {
 					if (currentFragment == FragmentsAvailable.SETTINGS) {
 						updateAnimationsState();
